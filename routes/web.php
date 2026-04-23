@@ -1,5 +1,6 @@
     <?php
 
+    use App\Http\Controllers\CityController;
     use App\Http\Controllers\HomepageController;
     use App\Http\Controllers\ProfileController;
     use Illuminate\Support\Facades\Route;
@@ -11,13 +12,17 @@
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
+        Route::get('/', [HomepageController::class  , "index"])->name('welcome');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/add' , [CityController::class, 'index'])->name('city.create');
+        Route::post("/add" , [CityController::class, "store"])->name('admin.add');
+    });
     require __DIR__.'/auth.php';
 
 
 
-Route::get('/', [HomepageController::class  , "index"])->name('welcome');
+
