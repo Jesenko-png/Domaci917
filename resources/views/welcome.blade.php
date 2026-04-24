@@ -1,4 +1,5 @@
 @extends("layout")
+@section("sadrzajStranice")
 
     <table class="table table-striped table-dark">
         <thead>
@@ -10,16 +11,20 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($cities as $city => $temp)
+        @foreach($cities as $city)
         <tr>
             <th scope="row">1</th>
-            <td>{{$city}}</td>
-            <td>{{$temp}}</td>
+            <td>{{$city->name}}</td>
+            <td>{{$city->temperature}}°C</td>
 
         </tr>
+
         @endforeach
-
         </tbody>
-    </table>
 
+    </table>
+    @if(auth()->check() && auth()->user()->role == 'admin')
+        <a href="/add" class="btn btn-primary">Add City</a>
+    @endif
+@endsection
 
