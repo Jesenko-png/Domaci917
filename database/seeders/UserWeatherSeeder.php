@@ -19,6 +19,11 @@ class UserWeatherSeeder extends Seeder
             $this->command->info("City or temperature can't be empty");
             return;
         }
+       if(City::where('name',$city)->exists()){
+           $this->command->error("City already exists");
+           return;
+       }
+
         City::create([
             'name' => $city,
             'temperature' => $temperature,
