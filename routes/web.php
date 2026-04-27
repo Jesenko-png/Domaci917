@@ -1,6 +1,7 @@
     <?php
 
     use App\Http\Controllers\CityController;
+    use App\Http\Controllers\ForecastController;
     use App\Http\Controllers\HomepageController;
     use App\Http\Controllers\ProfileController;
     use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@
         Route::get('/add' , [CityController::class, 'index'])->name('city.create');
         Route::post("/add" , [CityController::class, "store"])->name('admin.add');
     });
+    Route::get("/forecast/{city}" , [ForecastController::class, "index"])->name('forecast');
     require __DIR__.'/auth.php';
 
 
