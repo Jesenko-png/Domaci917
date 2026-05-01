@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CitiesModel;
 use App\Models\City;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
     public function store(Request $request){
-        City::create([
+        CitiesModel::create([
             "name" => $request->name,
             "temperature" => $request->temperature
         ]);

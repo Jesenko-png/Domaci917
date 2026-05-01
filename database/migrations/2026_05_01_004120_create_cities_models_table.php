@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name' , 20)->unique();
-            $table->decimal('temperature', 5, 2)->default(0);
+            $table->string('name');
             $table->timestamps();
         });
     }
