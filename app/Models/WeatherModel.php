@@ -8,6 +8,6 @@ class WeatherModel extends Model
 {
     protected $table = 'weather';
 
-    protected $fillable = ['name' , 'temperature'];
+    protected $fillable = ['city_id' , 'temperature'];
 
 }
