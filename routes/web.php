@@ -4,6 +4,7 @@
     use App\Http\Controllers\ForecastController;
     use App\Http\Controllers\HomepageController;
     use App\Http\Controllers\ProfileController;
+    use App\Http\Controllers\WeatherController;
     use Illuminate\Support\Facades\Route;
 
 
@@ -11,6 +12,7 @@
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
+    Route::get("/prognose" , [WeatherController::class , "index"])->name("weather");
     Route::middleware('auth')->group(function () {
         Route::get('/', [HomepageController::class  , "index"])->name('welcome');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
