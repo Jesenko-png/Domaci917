@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class ShowUsers extends Controller
 {
     public function show(){
-        $users=User::all();
+        $users = User::with('city', 'detail')->get();
         return view('users', compact('users'));
     }
+
 }

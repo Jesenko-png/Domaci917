@@ -29,6 +29,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(CitiesModel::class);
     }
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
