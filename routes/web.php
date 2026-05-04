@@ -13,6 +13,7 @@
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::get("/prognose" , [WeatherController::class , "index"])->name("weather");
+    Route::get("/users" , [\App\Http\Controllers\ShowUsers::class , "show"])->name("users");
     Route::middleware('auth')->group(function () {
         Route::get('/', [HomepageController::class  , "index"])->name('welcome');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

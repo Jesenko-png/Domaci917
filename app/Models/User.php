@@ -22,7 +22,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'city_id'
     ];
+
+    public function city()
+    {
+        return $this->belongsTo(CitiesModel::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
