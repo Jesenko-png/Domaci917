@@ -4,6 +4,7 @@
     use App\Http\Controllers\ForecastController;
     use App\Http\Controllers\HomepageController;
     use App\Http\Controllers\ProfileController;
+    use App\Http\Controllers\ShowUsers;
     use App\Http\Controllers\WeatherController;
     use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,7 @@
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::get("/prognose" , [WeatherController::class , "index"])->name("weather");
-    Route::get("/users" , [\App\Http\Controllers\ShowUsers::class , "show"])->name("users");
+    Route::get("/users" , [ShowUsers::class , "show"])->name("users");
     Route::middleware('auth')->group(function () {
         Route::get('/', [HomepageController::class  , "index"])->name('welcome');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,7 +25,7 @@
         Route::get('/add' , [CityController::class, 'index'])->name('city.create');
         Route::post("/add" , [CityController::class, "store"])->name('admin.add');
     });
-    Route::get("/forecast/{city}" , [ForecastController::class, "index"])->name('forecast');
+    Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
     require __DIR__.'/auth.php';
 
 
