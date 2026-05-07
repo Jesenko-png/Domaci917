@@ -4,9 +4,9 @@
 
     @foreach($prognoze as $prognoza)
 
-        <p: {{$prognoza->forecast_date}}<br>
-       <p> Temperature:  {{$prognoza->temperature}}</p><br>
-        <p>Grad:{{}}</p>
+        <p>Datum : {{$prognoza->forecast_date}}</p>
+       <p> Temperature:  {{$prognoza->temperature}}</p>
+        <p>Grad:{{$prognoza->city->name}}</p> <br>
 
 
     @endforeach
