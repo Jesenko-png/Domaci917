@@ -2,7 +2,7 @@
 
 @section("sadrzajStranice")
 
-    @foreach($prognoze as $prognoza)
+    @foreach($city->forecasts as $prognoza)
 
         <p>Datum : {{$prognoza->forecast_date}}</p>
        <p> Temperature:  {{$prognoza->temperature}}</p>
