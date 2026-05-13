@@ -11,11 +11,11 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($cities as $city)
+        @foreach($cities as $index => $city)
         <tr>
             <th scope="row">1</th>
             <td>{{$city->name}}</td>
-            <td>{{$city->temperature}}°C</td>
+            <td>{{$temperature[$index]->temperature}}°C</td>
 
         </tr>
 

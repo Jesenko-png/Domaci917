@@ -24,6 +24,8 @@
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/add' , [CityController::class, 'index'])->name('city.create');
         Route::post("/add" , [CityController::class, "store"])->name('admin.add');
+        Route::view('/weather' , 'admin.weather_index');
+        Route::post('/weather' , [WeatherController::class, "store"])->name('weather.update');
     });
     Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
     require __DIR__.'/auth.php';
