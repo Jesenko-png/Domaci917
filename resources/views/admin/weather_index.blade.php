@@ -1,4 +1,4 @@
-<form method="post" action="/weather">
+<form method="post" action="{{route("weather.update")}}">
     @csrf
 <select name="city_id">
     @foreach(\App\Models\CitiesModel::all() as $city)

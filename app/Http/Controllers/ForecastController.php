@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CitiesModel;
 use App\Models\ForecastModel;
+use Illuminate\Http\Request;
 
 class ForecastController extends Controller
 {
@@ -12,4 +13,5 @@ class ForecastController extends Controller
         {
         return view('forecast' , compact('city'));
     }
+
 }

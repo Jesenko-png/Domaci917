@@ -1,5 +1,6 @@
     <?php
 
+    use App\Http\Controllers\AdminForecastController;
     use App\Http\Controllers\CityController;
     use App\Http\Controllers\ForecastController;
     use App\Http\Controllers\HomepageController;
@@ -26,6 +27,8 @@
         Route::post("/add" , [CityController::class, "store"])->name('admin.add');
         Route::view('/weather' , 'admin.weather_index');
         Route::post('/weather' , [WeatherController::class, "store"])->name('weather.update');
+        Route::view('admin/forecast' , 'admin.forecast_store');
+        Route::post('admin/forecast' , [AdminForecastController::class, "store"])->name('forecast.store');
     });
     Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
     require __DIR__.'/auth.php';
