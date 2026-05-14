@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 class AdminForecastController extends Controller
 {
     public function store(Request $request){
-        $request->validate([
-            "city_id" => "required",
+       $validated= $request->validate([
+            "city_id" => "required|exists:cities,id",
             "temperature" => "required",
             "weather_type" => "required",
             "forecast_date" => "required",
         ]);
 
-        ForecastModel::create($request->all());
+        ForecastModel::create($validated);
         return redirect()->back();
     }
 }
