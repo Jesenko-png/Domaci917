@@ -11,6 +11,6 @@ class CitiesModel extends Model
     protected $fillable = ['name'];
 
     public function forecasts(){
-        return $this->hasMany(ForecastModel::class, 'city_id', 'id');
+        return $this->hasMany(ForecastModel::class, 'city_id', 'id')->orderBy('forecast_date');
 }
 }
