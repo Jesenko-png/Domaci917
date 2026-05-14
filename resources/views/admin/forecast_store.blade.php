@@ -29,7 +29,31 @@
 
         <ul>
             @foreach($city->forecasts as $forecast)
-        <li>{{$forecast->forecast_date}}-{{$forecast->temperature}}</li>
+                @php
+                    $boja;
+                    if ($forecast->temperature <= 0)
+                        {
+                            $boja = "lightblue";
+                        }
+                    elseif ($forecast->temperature >=1 && $forecast->temperature <= 15)
+                {
+                    $boja="blue";
+                }
+                    elseif ($forecast->temperature > 15 && $forecast->temperature <= 25){
+                        $boja="green";
+                    }
+                    else{
+                        $boja="red";
+                    }
+
+                 @endphp
+
+
+
+
+
+        <li>{{$forecast->forecast_date}}-<span style="color:{{$boja}};">{{$forecast->temperature}}</span></li>
+
             @endforeach
         </ul>
 
