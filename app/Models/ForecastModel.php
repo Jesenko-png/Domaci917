@@ -9,7 +9,7 @@ class ForecastModel extends Model
     protected $table = 'forecast';
 
     protected $fillable = ['city_id', 'temperature', 'forecast_date' , 'weather_type' , 'probability'];
-    const WEATHERS = ['rainy', 'snowy' , 'sunny'];
+    const WEATHERS = ['rainy', 'snowy' , 'sunny','cloudy'];
 
     public function city()
     {

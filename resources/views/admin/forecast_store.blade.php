@@ -167,9 +167,23 @@
                                 @foreach($city->forecasts as $forecast)
 
                                     @php
+
                                         $boja = \App\Http\ForecastHelper::getColorByTemperature(
                                             $forecast->temperature
                                         );
+
+                                        $icon = match($forecast->weather_type) {
+
+                                            'Sunny' => 'fa-sun',
+                                            'Rainy' => 'fa-cloud-rain',
+                                            'Cloudy' => 'fa-cloud',
+                                            'Stormy' => 'fa-bolt',
+                                            'Snowy' => 'fa-snowflake',
+
+                                            default => 'fa-cloud-sun'
+
+                                        };
+
                                     @endphp
 
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -177,7 +191,11 @@
                                         <div>
 
                                             <div class="fw-bold">
+
+                                                <i class="fa-solid {{ $icon }} me-2"></i>
+
                                                 {{ $forecast->forecast_date }}
+
                                             </div>
 
                                             <small class="text-muted">
