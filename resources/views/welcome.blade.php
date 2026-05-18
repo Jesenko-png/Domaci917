@@ -71,9 +71,17 @@
 
                         <div class="card-body">
 
-                            @forelse($city->forecasts as $forecast)
+                            @php
+                                $forecast = $city->todayForecasts;
+                            @endphp
+
+                            @if($forecast)
 
                                 @php
+
+                                    $boja = \App\Http\ForecastHelper::getColorByTemperature(
+                                        $forecast->temperature
+                                    );
 
                                     $icon = match($forecast->weather_type){
 
@@ -91,7 +99,7 @@
 
                                 @endphp
 
-                                <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center">
+                                <div class="border rounded p-3 d-flex justify-content-between align-items-center">
 
                                     <div>
 
@@ -113,7 +121,9 @@
 
                                     <div class="text-end">
 
-                                        <div class="fw-bold fs-5">
+                                        <div
+                                            class="fw-bold fs-5"
+                                            style="color: {{ $boja }}">
 
                                             {{ $forecast->temperature }}°C
 
@@ -133,15 +143,15 @@
 
                                 </div>
 
-                            @empty
+                            @else
 
                                 <div class="alert alert-warning mb-0">
 
-                                    No forecasts available.
+                                    No forecast for today.
 
                                 </div>
 
-                            @endforelse
+                            @endif
 
                         </div>
 
@@ -151,7 +161,7 @@
 
                     <div class="alert alert-danger mt-4">
 
-                        No cities found.
+                        Trenutno nema kriterijuma za Vašu pretragu.
 
                     </div>
 

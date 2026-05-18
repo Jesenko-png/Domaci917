@@ -23,7 +23,7 @@ class ForecastSeeder extends Seeder
 
             $lastTemperature = rand(-10,30);
 
-            for($i = 0; $i < 5; $i++){
+            for($i = 0; $i < 30; $i++){
 
                 $temperature = rand(
                     $lastTemperature - 5,
@@ -63,7 +63,7 @@ class ForecastSeeder extends Seeder
 
                     'city_id' => $city->id,
                     'temperature' => $temperature,
-                    'forecast_date' => Carbon::now()->addDays($i + 1),
+                    'forecast_date' => Carbon::now()->addDays($i),
                     'weather_type' => $weatherType,
                     'probability' => $probability
 

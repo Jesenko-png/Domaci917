@@ -13,19 +13,17 @@ class HomepageController extends Controller
 
         $temperature = WeatherModel::all();
 
-        $cities = CitiesModel::query()
+        $cities = collect();
 
-            ->when($request->city, function ($query) use ($request){
+        if($request->city){
 
-                $query->where(
-                    'name',
-                    'LIKE',
-                    '%' . $request->city . '%'
-                );
+            $cities = CitiesModel::with('todayForecasts')->where(
+                'name',
+                'LIKE',
+                '%' . $request->city . '%'
+            )->get();
 
-            })
-
-            ->get();
+        }
 
         return view(
             'welcome',

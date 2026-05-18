@@ -16,8 +16,9 @@
 
     Route::get("/prognose" , [WeatherController::class , "index"])->name("weather");
     Route::get("/users" , [ShowUsers::class , "show"])->name("users");
+    Route::get('/', [HomepageController::class  , "index"])->name('welcome');
     Route::middleware('auth')->group(function () {
-        Route::get('/', [HomepageController::class  , "index"])->name('welcome');
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -30,8 +31,8 @@
         Route::view('admin/forecast' , 'admin.forecast_store');
         Route::post('admin/forecast' , [AdminForecastController::class, "store"])->name('forecast.store');
     });
-    Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
-    require __DIR__.'/auth.php';
+
+    require __DIR__.'/auth.php';Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
 
 
 
