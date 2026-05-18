@@ -1,9 +1,10 @@
 @extends('layoutwelcome')
+
 @section('content')
 
     <div class="row justify-content-center">
 
-        <div class="col-md-6">
+        <div class="col-lg-8">
 
             <div class="card shadow border-0 rounded-4">
 
@@ -18,7 +19,7 @@
 
                 <div class="card-body p-4">
 
-                    <form method="GET">
+                    <form method="GET" action="{{ route('welcome') }}">
 
                         <div class="mb-4">
 
@@ -46,6 +47,115 @@
                     </form>
 
                 </div>
+
+            </div>
+
+            <!-- SEARCH RESULTS -->
+            <div class="mt-5">
+
+                @forelse($cities as $city)
+
+                    <div class="card shadow-sm border-0 rounded-4 mb-4">
+
+                        <div class="card-header bg-dark text-white">
+
+                            <h4 class="mb-0">
+
+                                <i class="fa-solid fa-city me-2"></i>
+
+                                {{ $city->name }}
+
+                            </h4>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            @forelse($city->forecasts as $forecast)
+
+                                @php
+
+                                    $icon = match($forecast->weather_type){
+
+                                        'sunny' => 'fa-sun',
+
+                                        'rainy' => 'fa-cloud-rain',
+
+                                        'cloudy' => 'fa-cloud',
+
+                                        'snowy' => 'fa-snowflake',
+
+                                        default => 'fa-cloud-sun'
+
+                                    };
+
+                                @endphp
+
+                                <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center">
+
+                                    <div>
+
+                                        <div class="fw-bold mb-1">
+
+                                            <i class="fa-solid {{ $icon }} me-2"></i>
+
+                                            {{ ucfirst($forecast->weather_type) }}
+
+                                        </div>
+
+                                        <small class="text-muted">
+
+                                            {{ $forecast->forecast_date }}
+
+                                        </small>
+
+                                    </div>
+
+                                    <div class="text-end">
+
+                                        <div class="fw-bold fs-5">
+
+                                            {{ $forecast->temperature }}°C
+
+                                        </div>
+
+                                        @if($forecast->probability)
+
+                                            <small class="text-primary">
+
+                                                {{ $forecast->probability }}% precipitation
+
+                                            </small>
+
+                                        @endif
+
+                                    </div>
+
+                                </div>
+
+                            @empty
+
+                                <div class="alert alert-warning mb-0">
+
+                                    No forecasts available.
+
+                                </div>
+
+                            @endforelse
+
+                        </div>
+
+                    </div>
+
+                @empty
+
+                    <div class="alert alert-danger mt-4">
+
+                        No cities found.
+
+                    </div>
+
+                @endforelse
 
             </div>
 

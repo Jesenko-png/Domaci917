@@ -2,17 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
+use App\Models\CitiesModel;
 use App\Models\WeatherModel;
+use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
         $temperature = WeatherModel::all();
-        $cities = City::all();
 
+        $cities = CitiesModel::query()
 
-        return view('welcome', compact('temperature','cities'));
+            ->when($request->city, function ($query) use ($request){
+
+                $query->where(
+                    'name',
+                    'LIKE',
+                    '%' . $request->city . '%'
+                );
+
+            })
+
+            ->get();
+
+        return view(
+            'welcome',
+            compact('temperature', 'cities')
+        );
+
     }
 }
