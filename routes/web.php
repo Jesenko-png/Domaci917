@@ -15,7 +15,7 @@
     })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-    Route::get('/user-cities/favourite',[\App\Http\Controllers\UserCities::class , 'favourites'])->name('city.favourite');
+    Route::get('/user-cities/favourite/{city}',[\App\Http\Controllers\UserCities::class , 'favourites'])->name('city.favourite');
     Route::get("/prognose" , [WeatherController::class , "index"])->name("weather");
     Route::get("/users" , [ShowUsers::class , "show"])->name("users");
     Route::get('/', [HomepageController::class  , "index"])->name('welcome');
@@ -34,7 +34,9 @@
         Route::post('admin/forecast' , [AdminForecastController::class, "store"])->name('forecast.store');
     });
 
-    require __DIR__.'/auth.php';Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
+    require __DIR__.'/auth.php';
+
+    Route::get("/forecast/{city:name}" , [ForecastController::class, "index"])->name('forecast');
 
 
 

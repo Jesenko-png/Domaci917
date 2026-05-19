@@ -59,7 +59,7 @@
                     <div class="card shadow-sm border-0 rounded-4 mb-4">
 
                         <div class="card-header bg-dark text-white">
-                            <a href="{{route("city.favourite")}}" class="btn btn-primary">
+                            <a href="{{route("city.favourite",$city->id)}}" class="btn btn-primary">
                                 <i class="fa-regular text-white fa-heart"></i>
 
                             </a>

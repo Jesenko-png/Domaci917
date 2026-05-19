@@ -9,14 +9,15 @@
 
     class UserCities extends Controller
     {
-        public function favourites(Request $request){
-           $ulogovan = Auth::user();
+        public function favourites(Request $request , $city){
+           $user = Auth::user();
 
-               if($ulogovan){
-                   die("more");
-               }
-               else {
-      return redirect()->route("login")->with("error", "Morate biti ulogovani da biste spremili u favorite");
-               }
+           if(!$user){
+                 return redirect()->route("login")->with("error", "Morate biti ulogovani da biste spremili u favorite");
+           }
+               \App\Models\UserCitiesModel::create([
+                   'city_id' => $city,
+                   "user_id" => $user->id
+               ]);
         }
     }
