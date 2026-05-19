@@ -28,7 +28,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        if(auth()->user()->role=="admin")
+        {
+            return redirect("/admin/forecast");
+        }
+        else {
+
+
+            return redirect()->intended(route('welcome', absolute: false));
+        }
     }
 
     /**

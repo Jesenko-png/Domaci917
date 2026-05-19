@@ -55,10 +55,14 @@
 
                 @forelse($cities as $city)
 
+
                     <div class="card shadow-sm border-0 rounded-4 mb-4">
 
                         <div class="card-header bg-dark text-white">
+                            <a href="{{route("city.favourite")}}" class="btn btn-primary">
+                                <i class="fa-regular text-white fa-heart"></i>
 
+                            </a>
                             <h4 class="mb-0">
 
                                 <i class="fa-solid fa-city me-2"></i>

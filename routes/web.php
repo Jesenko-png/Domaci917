@@ -14,6 +14,8 @@
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+    Route::get('/user-cities/favourite',[\App\Http\Controllers\UserCities::class , 'favourites'])->name('city.favourite');
     Route::get("/prognose" , [WeatherController::class , "index"])->name("weather");
     Route::get("/users" , [ShowUsers::class , "show"])->name("users");
     Route::get('/', [HomepageController::class  , "index"])->name('welcome');
